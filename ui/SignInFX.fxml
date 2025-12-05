@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectoSignIn.ui.SignInController">
+   <children>
+       <TextField fx:id="tfUser" alignment="TOP_LEFT" layoutX="429.0" layoutY="294.0" prefHeight="25.0" prefWidth="250.0" promptText="usuario@dominio.com">
+         <tooltip>
+            <Tooltip text="Enter your email address associated with this service" />
+         </tooltip></TextField>
+      <PasswordField fx:id="pfPasswd" layoutX="429.0" layoutY="351.0" prefHeight="25.0" prefWidth="250.0" promptText="Password">
+         <tooltip>
+            <Tooltip text="Enter your password" />
+         </tooltip></PasswordField>
+      <Label layoutX="364.0" layoutY="296.0" text="Email">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="328.0" layoutY="353.0" text="Password">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="473.0" layoutY="158.0" text="Sign In">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="btSignIn" layoutX="554.0" layoutY="451.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Sign In" />
+      <Hyperlink fx:id="hlRegister" layoutX="591.0" layoutY="389.0" text="Register" />
+      <Button fx:id="btExit" layoutX="364.0" layoutY="451.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Exit" />
+      <Label layoutX="429.0" layoutY="393.0" text="Don't have an account?" />
+      <Label fx:id="lbErrorEmail" disable="true" layoutX="683.0" layoutY="299.0" text="Enter a valid format" textFill="#fc0000" underline="true" />
+      <Label fx:id="lbErrorSignIn" disable="true" layoutX="425.0" layoutY="424.0" text="The username or password is incorrect." textFill="#e80101" underline="true" />
+   </children>
+</Pane>

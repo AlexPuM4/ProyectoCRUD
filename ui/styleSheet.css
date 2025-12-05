@@ -1,0 +1,108 @@
+/* --- VARIABLES DE COLOR --- */
+.root {
+    /* Color 1: Acento (Azul Moderno) */
+    -fx-accent-color: #007AFF; 
+
+    /* Color 2: Texto (Gris Oscuro) */
+    -fx-text-color: #333333;
+
+    /* Colores Neutros */
+    -fx-neutral-border: #DCDCDC; /* Borde gris claro */
+    -fx-neutral-bg-light: #F9F9F9;  /* Fondo de campo */
+    -fx-neutral-bg-dark: #FFFFFF;   /* Fondo de ventana */
+}
+
+/* --- FONDO Y FUENTE GENERAL --- */
+.root {
+    -fx-font-family: "System"; /* Usa la fuente nativa moderna del SO */
+    -fx-font-size: 14px;
+    -fx-background-color: -fx-neutral-bg-dark;
+}
+
+/* --- ESTILO DE CAMPOS DE TEXTO Y CONTRASEÑA --- */
+.text-field,
+.password-field {
+    -fx-background-color: -fx-neutral-bg-light;
+    -fx-text-fill: -fx-text-color;
+    -fx-prompt-text-fill: #AAAAAA; /* Color del placeholder */
+
+    /* Borde por defecto */
+    -fx-border-color: -fx-neutral-border;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 10px;
+}
+
+/* --- ESTADO DE FOCO (Cuando se hace clic) --- */
+.text-field:focused,
+.password-field:focused {
+    /* Se pone azul solo cuando tiene foco Y NO es inválido */
+    -fx-border-color: -fx-accent-color;
+}
+/* NOTA: Tu setStyle("-fx-border-color: red") anulará este :focused,
+   lo cual es el comportamiento deseado. */
+
+
+/* --- ESTILO DE BOTONES --- */
+
+/* Botón Principal (Sign Up) */
+#btnSignUp,#btSignIn,#applyExit{
+    -fx-background-color: -fx-accent-color;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+#btnSignUp:hover,#btSignIn:hover,#applyExit:hover {
+    -fx-background-color: derive(-fx-accent-color, -15%); /* Azul más oscuro */
+}
+
+#btnSignUp:disabled,#btSignIn:disabled {
+    -fx-background-color: #E0E0E0; /* Gris cuando está deshabilitado */
+    -fx-text-fill: #AAAAAA;
+    -fx-opacity: 0.8;
+}
+
+/* Botón Secundario (Back) */
+#btnBack,#btExit,#back {
+    -fx-background-color: -fx-neutral-bg-light;
+    -fx-text-fill: -fx-text-color;
+    -fx-border-color: -fx-neutral-border;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+#btnBack:hover,#btExit:hover ,#back:hover{
+    -fx-background-color: #EFEFEF; /* Gris claro al pasar el ratón */
+}
+
+/* --- HIPERVÍNCULO --- */
+.hyperlink {
+    -fx-text-fill: -fx-accent-color;
+    -fx-underline: false; /* Sin subrayado (minimalista) */
+}
+
+.hyperlink:hover {
+    -fx-underline: true; /* Subrayado solo al pasar el ratón */
+}
+
+/* --- ETIQUETAS (LABELS) --- */
+.label {
+    -fx-text-fill: -fx-text-color;
+}
+
+/* Estilo base para los mensajes de validación (IDs de tu FXML) */
+#emailMessage, #nameMessage, #lastNameMessage, #midNameMessage, 
+#streetMessage, #stateMessage, #zipMessage, #phoneMessage, 
+#cityMessage, #passwordMessage, #confirmPassMessage {
+    -fx-font-size: 12px;
+    /* El color (rojo/verde) y la visibilidad se controlan desde tu código Java,
+       así que no necesitamos definirlos aquí. */
+}

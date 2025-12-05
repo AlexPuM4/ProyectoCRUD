@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectoSignIn.ui.SignUpController">
+    <children>
+        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="261.0" layoutY="144.0" prefHeight="37.0" prefWidth="69.0" text="Email ">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <TextField fx:id="tfEmail" layoutX="338.0" layoutY="151.0" prefHeight="25.0" prefWidth="427.0" promptText="usuario@dominio.com">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <tooltip>
+                <Tooltip />
+            </tooltip>
+        </TextField>
+        <TextField fx:id="tfFirstName" layoutX="342.0" layoutY="206.0" prefHeight="25.0" prefWidth="427.0" promptText="First name">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </TextField>
+        <Label alignment="CENTER_RIGHT" layoutX="238.0" layoutY="200.0" prefHeight="37.0" prefWidth="96.0" text="First name">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <TextField fx:id="tfLastName" layoutX="339.0" layoutY="264.0" prefHeight="25.0" prefWidth="420.0" promptText="Last name">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </TextField>
+        <Label alignment="CENTER_RIGHT" layoutX="245.0" layoutY="258.0" prefHeight="37.0" prefWidth="81.0" text="Last name">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <TextField fx:id="tfMiddleName" layoutX="339.0" layoutY="318.0" prefHeight="25.0" prefWidth="420.0" promptText="Middle name">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <tooltip>
+                <Tooltip text="Empty Tooltip" />
+            </tooltip>
+        </TextField>
+        <Label alignment="CENTER_RIGHT" layoutX="234.0" layoutY="417.0" prefHeight="37.0" prefWidth="81.0" text="City">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="527.0" layoutY="417.0" prefHeight="37.0" prefWidth="43.0" text="State">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="264.0" layoutY="366.0" prefHeight="37.0" prefWidth="55.0" text="Street">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <TextField fx:id="tfStreet" layoutX="339.0" layoutY="372.0" prefHeight="25.0" prefWidth="420.0" promptText="Street">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </TextField>
+        <TextField fx:id="tfCity" layoutX="336.0" layoutY="423.0" prefHeight="25.0" prefWidth="177.0" promptText="City">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </TextField>
+        <TextField fx:id="tfState" layoutX="580.0" layoutY="423.0" prefHeight="25.0" prefWidth="177.0" promptText="State">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </TextField>
+        <TextField fx:id="tfPhone" layoutX="336.0" layoutY="476.0" prefHeight="25.0" prefWidth="177.0" promptText="666-666-666">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </TextField>
+        <TextField fx:id="tfZip" layoutX="581.0" layoutY="476.0" prefHeight="25.0" prefWidth="177.0" promptText="66666">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </TextField>
+        <PasswordField fx:id="pfPass" layoutX="336.0" layoutY="529.0" prefHeight="25.0" prefWidth="427.0" promptText="********">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </PasswordField>
+        <PasswordField fx:id="pfConfirmPass" layoutX="338.0" layoutY="586.0" prefHeight="25.0" prefWidth="427.0" promptText="********">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </PasswordField>
+        <Label alignment="CENTER_RIGHT" layoutX="266.0" layoutY="470.0" prefHeight="37.0" prefWidth="55.0" text="Phone">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="539.0" layoutY="472.0" prefHeight="37.0" prefWidth="25.0" text="Zip">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="234.0" layoutY="523.0" prefHeight="37.0" prefWidth="81.0" text="Password">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="205.0" layoutY="580.0" prefHeight="37.0" prefWidth="126.0" text="Confirm password">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Label alignment="CENTER_RIGHT" layoutX="259.0" layoutY="312.0" prefHeight="37.0" prefWidth="69.0" text="Mid name">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </Label>
+        <Button fx:id="btnSignUp" layoutX="619.0" layoutY="667.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Sign Up" />
+        <Button fx:id="btnBack" layoutX="343.0" layoutY="667.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Back" />
+        <Label layoutX="423.0" layoutY="82.0" text="Do you have already an account?" />
+        <Hyperlink fx:id="hyperLink" layoutX="508.0" layoutY="102.0" text="Sign In" />
+        <Label layoutX="779.0" layoutY="151.0" text="?">
+            <font>
+                <Font size="20.0" />
+            </font>
+            <tooltip>
+                <Tooltip text="You must enter a valid email, for example: (paquito@gmail.com)" />
+            </tooltip>
+        </Label>
+        <Label layoutX="779.0" layoutY="477.0" text="?">
+            <font>
+                <Font size="20.0" />
+            </font>
+            <tooltip>
+                <Tooltip text="Example: valid zip number 64083" />
+            </tooltip>
+        </Label>
+        <Label layoutX="522.0" layoutY="478.0" text="?">
+            <font>
+                <Font size="20.0" />
+            </font>
+            <tooltip>
+                <Tooltip text="Example: valid phone number: 415-345-6789" />
+            </tooltip>
+        </Label>
+        <Label layoutX="779.0" layoutY="530.0" text="?">
+            <font>
+                <Font size="20.0" />
+            </font>
+            <tooltip>
+                <Tooltip text="The password must have at least one capital letter, one number, and one special charact" />
+            </tooltip>
+        </Label>
+        <Label fx:id="emailMessage" layoutX="804.0" layoutY="155.0" text=" " textFill="RED" visible="false" />
+        <Label fx:id="nameMessage" layoutX="804.0" layoutY="201.0" textFill="#1fff48" visible="false" />
+        <Label fx:id="lastNameMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="797.0" layoutY="256.0" textAlignment="CENTER" textFill="#1fff48" visible="false" />
+        <Label fx:id="midNameMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="797.0" layoutY="322.0" textAlignment="CENTER" textFill="#1fff48" visible="false" />
+        <Label fx:id="streetMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="797.0" layoutY="376.0" textAlignment="CENTER" textFill="#1fff48" visible="false" />
+        <Label fx:id="stateMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="796.0" layoutY="424.0" textAlignment="CENTER" textFill="#1fff48" visible="false" />
+        <Label fx:id="zipMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="797.0" layoutY="482.0" textAlignment="CENTER" textFill="#1fff48" visible="false" />  
+        <Label fx:id="passwordMessage" alignment="CENTER" layoutX="797.0" layoutY="533.0" textAlignment="CENTER" textFill="#1fff48" visible="false" />
+        <Label fx:id="confirmPassMessage" layoutX="798.0" layoutY="590.0" textFill="#1fff48" visible="false" />
+        <Label fx:id="cityMessage" alignment="CENTER_RIGHT" layoutX="21.0" layoutY="424.0" prefHeight="23.0" prefWidth="251.0" textFill="#1fff48" visible="false" />
+        <Label fx:id="phoneMessage" alignment="CENTER_RIGHT" layoutX="12.0" layoutY="482.0" prefHeight="17.0" prefWidth="265.0" text=" " visible="false" />
+       
+    </children>
+</Pane>
