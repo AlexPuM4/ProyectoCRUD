@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocrud.ui;
+package ui;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,8 +30,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.InternalServerErrorException;
-import proyectocrud.model.Customer;
-import proyectocrud.logic.CustomerRESTClient;
+import model.Customer;
+import logic.CustomerRESTClient;
 
 /**
  * Controlador para la vista de registro de usuarios (Sign Up). Maneja la lógica
