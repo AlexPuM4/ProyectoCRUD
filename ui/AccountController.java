@@ -75,10 +75,10 @@ public class AccountController {
     this.stage = new Stage();  
     stage.setTitle("My Accounts");
     stage.setScene(scene);
-    stage.show();
     stage.setResizable(false);
     ContinueBt.setDisable(true);
     ExitBt.setOnAction(this::handleBtExitOnAction);
+    stage.show();
     } catch (IOException e) {
     e.printStackTrace();
     }
@@ -86,7 +86,7 @@ public class AccountController {
     public void setCustomer(Customer customer) {
             this.customer = customer;
     }
-    public void handleBtExitOnAction(ActionEvent event) {
+    private void handleBtExitOnAction(ActionEvent event) {
         try {
             Alert confirm = new Alert(AlertType.CONFIRMATION, "Estas seguro que quieres salir?");
             Optional<ButtonType> result = confirm.showAndWait();
