@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocrud.model;
+package model;
 
 //package <TODO>;
 import java.io.Serializable;

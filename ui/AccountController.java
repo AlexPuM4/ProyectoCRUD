@@ -29,12 +29,12 @@ import javafx.scene.Node;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotAuthorizedException;
-import proyectocrud.logic.CustomerRESTClient;
-import proyectocrud.model.Customer;
-import proyectocrud.model.Account;
+import logic.CustomerRESTClient;
+import model.Customer;
+import model.Account;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
-import proyectocrud.model.AccountType;
+import model.AccountType;
 
 
 
@@ -65,7 +65,8 @@ public class AccountController {
     private TableColumn<Account , Date> DateClmn;
     private static final Logger LOGGER = Logger.getLogger("proyectosignin1.ui");
     private Stage stage;
-    private void initStage (){
+    private Customer customer;
+    public void initStage (){
     LOGGER.info("Initializing account window");
     try {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountFX.fxml"));
@@ -82,7 +83,10 @@ public class AccountController {
     e.printStackTrace();
     }
     }
-    private void handleBtExitOnAction(ActionEvent event) {
+    public void setCustomer(Customer customer) {
+            this.customer = customer;
+    }
+    public void handleBtExitOnAction(ActionEvent event) {
         try {
             Alert confirm = new Alert(AlertType.CONFIRMATION, "Estas seguro que quieres salir?");
             Optional<ButtonType> result = confirm.showAndWait();

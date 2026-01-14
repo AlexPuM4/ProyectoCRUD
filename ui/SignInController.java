@@ -1,4 +1,4 @@
-package proyectocrud.ui;
+package ui;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -24,8 +24,9 @@ import javafx.scene.Node;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotAuthorizedException;
-import proyectocrud.logic.CustomerRESTClient;
-import proyectocrud.model.Customer;
+import logic.CustomerRESTClient;
+import model.Customer;
+import ui.AccountController;
 
 /**
  * Controller class for user management windows
@@ -90,11 +91,11 @@ public class SignInController {
             client.close();
             LOGGER.info("User authenticated: " + customer.getEmail());
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ChangePassword.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountFX.fxml"));
             Parent root = loader.load();
-            ChangePasswordController controller = loader.getController();
+            AccountController controller = loader.getController();
             controller.setCustomer(customer);
-            controller.init(stage, root);
+            controller.initStage();
 
         } catch (NotAuthorizedException e) {
             lbErrorSignIn.setVisible(true);

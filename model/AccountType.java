@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyectocrud.model;
+package model;
 
 /**
  * Accounts types for Account instances: standard or credit type.
