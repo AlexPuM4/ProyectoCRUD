@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectoSignIn.ui.AccountController">
+   <children>
+      <TableView fx:id="tablatv" layoutX="114.0" layoutY="168.0" prefHeight="433.0" prefWidth="797.0">
+        <columns>
+          <TableColumn id="AccountTypeClmn" prefWidth="101.0" text="AccountType" />
+          <TableColumn id="DescriptionClmn" prefWidth="124.0" text="Description" />
+            <TableColumn id="BalanceClmn" minWidth="0.0" prefWidth="76.0" text="Balance" />
+            <TableColumn id="CreditLineClmn" prefWidth="127.0" text="CreditLine" />
+            <TableColumn id="BeginBalanceClmn" prefWidth="100.0" text="BeginBalance" />
+            <TableColumn id="DateClmn" prefWidth="93.0" text="Date" />
+            <TableColumn id="AccountTypeClmn" fx:id="idClmn" prefWidth="101.0" text="ID" />
+        </columns>
+      </TableView>
+      <Button fx:id="ExitBt" layoutX="114.0" layoutY="660.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Exit" />
+      <Button fx:id="ContinueBt" layoutX="784.0" layoutY="660.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Continue" />
+   </children>
+</Pane>

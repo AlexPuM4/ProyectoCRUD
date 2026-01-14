@@ -1,0 +1,97 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ui;
+import java.io.IOException;
+import java.util.Date;
+import java.util.Optional;
+import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import java.util.regex.Pattern;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.InternalServerErrorException;
+import javax.ws.rs.NotAuthorizedException;
+import proyectocrud.logic.CustomerRESTClient;
+import proyectocrud.model.Customer;
+import proyectocrud.model.Account;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import proyectocrud.model.AccountType;
+
+
+
+/**
+ *
+ * @author lossi
+ */
+public class AccountController {
+    @FXML
+    private Button ContinueBt;
+    @FXML
+    private Button ExitBt;
+    @FXML
+    private TableView<Account> tablatv;
+    @FXML
+    private TableColumn<Account , Long> idClmn;
+    @FXML
+    private TableColumn<Account , AccountType> AccountTypeClmn;
+    @FXML
+    private TableColumn<Account , String> DescriptionClmn;
+    @FXML
+    private TableColumn<Account , Double> BalanceClmn;
+    @FXML
+    private TableColumn<Account , Double> CreditLineClmn;
+    @FXML
+    private TableColumn<Account , Double> BeginBalanceClmn;
+    @FXML
+    private TableColumn<Account , Date> DateClmn;
+    private static final Logger LOGGER = Logger.getLogger("proyectosignin1.ui");
+    private Stage stage;
+    private void initStage (){
+    LOGGER.info("Initializing account window");
+    try {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountFX.fxml"));
+    Parent root = loader.load();
+    Scene scene = new Scene(root);
+    this.stage = new Stage();  
+    stage.setTitle("My Accounts");
+    stage.setScene(scene);
+    stage.show();
+    stage.setResizable(false);
+    ContinueBt.setDisable(true);
+    ExitBt.setOnAction(this::handleBtExitOnAction);
+    } catch (IOException e) {
+    e.printStackTrace();
+    }
+    }
+    private void handleBtExitOnAction(ActionEvent event) {
+        try {
+            Alert confirm = new Alert(AlertType.CONFIRMATION, "Estas seguro que quieres salir?");
+            Optional<ButtonType> result = confirm.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                stage.close();
+            }
+        } catch (Exception e) {
+            Alert alert = new Alert(AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        }
+    }
+}
