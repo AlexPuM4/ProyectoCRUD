@@ -6,6 +6,7 @@
 package ui;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
@@ -24,6 +25,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import java.util.regex.Pattern;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javax.ws.rs.ClientErrorException;
@@ -34,6 +37,9 @@ import model.Customer;
 import model.Account;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javax.ws.rs.core.GenericType;
+import logic.AccountRESTClient;
 import model.AccountType;
 
 
@@ -72,6 +78,14 @@ public class AccountController {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountFX.fxml"));
     Parent root = loader.load();
     Scene scene = new Scene(root);
+          
+    idClmn.setCellValueFactory(new PropertyValueFactory<>("id"));
+    AccountTypeClmn.setCellValueFactory(new PropertyValueFactory<>("type"));
+    DescriptionClmn.setCellValueFactory(new PropertyValueFactory<>("description"));
+    BalanceClmn.setCellValueFactory(new PropertyValueFactory<>("balance"));
+    CreditLineClmn.setCellValueFactory(new PropertyValueFactory<>("creditLine"));
+    BeginBalanceClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalance"));
+    DateClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalanceTimestamp"));
     this.stage = new Stage();  
     stage.setTitle("My Accounts");
     stage.setScene(scene);
