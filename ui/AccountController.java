@@ -74,13 +74,13 @@ public class AccountController {
     private static final Logger LOGGER = Logger.getLogger("proyectosignin1.ui");
     private Stage stage;
     private Customer customer;
-    public void initStage (){
+    private AccountRESTClient client;
+    public void initStage(){
     LOGGER.info("Initializing account window");
     try {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountFX.fxml"));
     Parent root = loader.load();
-    Scene scene = new Scene(root);
-          
+    Scene scene = new Scene(root);   
     idClmn.setCellValueFactory(new PropertyValueFactory<>("id"));
     AccountTypeClmn.setCellValueFactory(new PropertyValueFactory<>("type"));
     DescriptionClmn.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -88,6 +88,14 @@ public class AccountController {
     CreditLineClmn.setCellValueFactory(new PropertyValueFactory<>("creditLine"));
     BeginBalanceClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalance"));
     DateClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalanceTimestamp"));
+    if (customer != null) {
+    AccountRESTClient restClient = new AccountRESTClient();
+    Account[] accountsArray = restClient.find_XML(Account[].class, customer.getId().toString());
+    if (accountsArray != null) {
+        tablatv.setItems(FXCollections.observableArrayList(accountsArray));
+    }
+    restClient.close();
+    }
     this.stage = new Stage();  
     stage.setTitle("My Accounts");
     stage.setScene(scene);

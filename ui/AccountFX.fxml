@@ -9,13 +9,13 @@
    <children>
       <TableView fx:id="tablatv" layoutX="114.0" layoutY="168.0" prefHeight="433.0" prefWidth="797.0">
         <columns>
-          <TableColumn id="AccountTypeClmn" prefWidth="101.0" text="AccountType" />
-          <TableColumn id="DescriptionClmn" prefWidth="124.0" text="Description" />
-            <TableColumn id="BalanceClmn" minWidth="0.0" prefWidth="76.0" text="Balance" />
-            <TableColumn id="CreditLineClmn" prefWidth="127.0" text="CreditLine" />
-            <TableColumn id="BeginBalanceClmn" prefWidth="100.0" text="BeginBalance" />
-            <TableColumn id="DateClmn" prefWidth="93.0" text="Date" />
-            <TableColumn id="AccountTypeClmn" fx:id="idClmn" prefWidth="101.0" text="ID" />
+          <TableColumn id="AccountTypeClmn" fx:id="AccountTypeClmn" prefWidth="101.0" text="AccountType" />
+          <TableColumn id="DescriptionClmn" fx:id="DescriptionClmn" prefWidth="124.0" text="Description" />
+            <TableColumn id="BalanceClmn" fx:id="BalanceClmn" minWidth="0.0" prefWidth="76.0" text="Balance" />
+            <TableColumn id="CreditLineClmn" fx:id="CreditLineClmn" prefWidth="127.0" text="CreditLine" />
+            <TableColumn id="BeginBalanceClmn" fx:id="BeginBalanceClmn" prefWidth="100.0" text="BeginBalance" />
+            <TableColumn id="DateClmn" fx:id="DateClmn" prefWidth="93.0" text="Date" />
+            <TableColumn id="ID" fx:id="idClmn" prefWidth="101.0" text="ID" />
         </columns>
       </TableView>
       <Button fx:id="ExitBt" layoutX="114.0" layoutY="660.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Exit" />
