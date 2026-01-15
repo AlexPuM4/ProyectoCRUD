@@ -75,6 +75,10 @@ public class AccountController {
     private Stage stage;
     private Customer customer;
     private AccountRESTClient client = new AccountRESTClient();
+    public void setCustomer(Customer customer) {
+            this.customer = customer;
+            tablatv.setItems(FXCollections.observableArrayList(client.findAccountsByCustomerId_XML(new GenericType<List<Account>>(){},customer.getId().toString())));
+    }
     public void initStage(){
     LOGGER.info("Initializing account window");
     try {
@@ -101,10 +105,6 @@ public class AccountController {
     } catch (IOException e) {
     e.printStackTrace();
     }
-    }
-    public void setCustomer(Customer customer) {
-            this.customer = customer;
-            tablatv.setItems(FXCollections.observableArrayList(client.findAccountsByCustomerId_XML(new GenericType<List<Account>>(){},customer.getId().toString())));
     }
     private void handleBtExitOnAction(ActionEvent event) {
         try {
