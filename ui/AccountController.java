@@ -54,6 +54,8 @@ public class AccountController {
     @FXML
     private Button ExitBt;
     @FXML
+    private Button newAccountBt;
+    @FXML
     private TableView<Account> tablatv;
     @FXML
     private TableColumn<Account , Long> idClmn;
@@ -92,6 +94,9 @@ public class AccountController {
     stage.setResizable(false);
     ContinueBt.setDisable(true);
     ExitBt.setOnAction(this::handleBtExitOnAction);
+    tablatv.getSelectionModel().selectedItemProperty().addListener(this::handleTableSelectionChanged);
+    newAccountBt.setOnAction(this::handleBtnwAccountOnAction);
+    ContinueBt.setOnAction(this::handleBtContinueOnAction);
     stage.show();
     } catch (IOException e) {
     e.printStackTrace();
@@ -111,5 +116,18 @@ public class AccountController {
             Alert alert = new Alert(AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         }
+    }
+    private void handleTableSelectionChanged(ObservableValue observable, Account oldValue, Account newValue){
+    if (newValue != null) {
+        ContinueBt.setDisable(false);
+    } else {
+        ContinueBt.setDisable(true);
+    }
+    }
+    private void handleBtContinueOnAction(ActionEvent event){
+    
+    }
+    private void handleBtnwAccountOnAction(ActionEvent event){
+        
     }
 }

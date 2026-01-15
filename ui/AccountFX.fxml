@@ -20,5 +20,6 @@
       </TableView>
       <Button fx:id="ExitBt" layoutX="114.0" layoutY="660.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Exit" />
       <Button fx:id="ContinueBt" layoutX="784.0" layoutY="660.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Continue" />
+      <Button fx:id="newAccountBt" layoutX="114.0" layoutY="127.0" mnemonicParsing="false" text="New Account" />
    </children>
 </Pane>
