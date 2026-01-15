@@ -171,7 +171,7 @@ public class ChangePasswordController {
             CustomerRESTClient client = new CustomerRESTClient();
             customer = client.findCustomerByEmailPassword_XML(Customer.class, customer.getEmail(), customer.getPassword());
             customer.setPassword(repeatNewPassword.getText());
-            client.edit_XML(customer, customer.getId());
+            /*client.edit_XML(customer, customer.getId());*/
             client.close();
 
             // Mostrar mensaje de éxito

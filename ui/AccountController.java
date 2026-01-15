@@ -74,7 +74,7 @@ public class AccountController {
     private static final Logger LOGGER = Logger.getLogger("proyectosignin1.ui");
     private Stage stage;
     private Customer customer;
-    private AccountRESTClient client;
+    private AccountRESTClient client = new AccountRESTClient();
     public void initStage(){
     LOGGER.info("Initializing account window");
     try {
@@ -88,14 +88,6 @@ public class AccountController {
     CreditLineClmn.setCellValueFactory(new PropertyValueFactory<>("creditLine"));
     BeginBalanceClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalance"));
     DateClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalanceTimestamp"));
-    if (customer != null) {
-    AccountRESTClient restClient = new AccountRESTClient();
-    Account[] accountsArray = restClient.find_XML(Account[].class, customer.getId().toString());
-    if (accountsArray != null) {
-        tablatv.setItems(FXCollections.observableArrayList(accountsArray));
-    }
-    restClient.close();
-    }
     this.stage = new Stage();  
     stage.setTitle("My Accounts");
     stage.setScene(scene);
@@ -112,6 +104,7 @@ public class AccountController {
     }
     public void setCustomer(Customer customer) {
             this.customer = customer;
+            tablatv.setItems(FXCollections.observableArrayList(client.findAccountsByCustomerId_XML(new GenericType<List<Account>>(){},customer.getId().toString())));
     }
     private void handleBtExitOnAction(ActionEvent event) {
         try {
