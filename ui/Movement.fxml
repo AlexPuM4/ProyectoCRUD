@@ -6,27 +6,22 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="114.0" layoutY="109.0" prefHeight="400.0" prefWidth="800.0">
+      <TableView layoutX="72.0" layoutY="88.0" prefHeight="400.0" prefWidth="880.0">
         <columns>
-          <TableColumn fx:id="date" minWidth="20.0" prefWidth="200.0" text="DATE" />
-          <TableColumn fx:id="type" prefWidth="200.0" text="TYPE" />
-            <TableColumn fx:id="amount" prefWidth="200.0" text="AMOUNT" />
-            <TableColumn fx:id="balance" prefWidth="200.0" text="BALANCE" />
+          <TableColumn fx:id="date" minWidth="20.0" prefWidth="220.0" text="DATE" />
+          <TableColumn fx:id="type" prefWidth="220.0" text="TYPE" />
+            <TableColumn fx:id="amount" prefWidth="220.0" text="AMOUNT" />
+            <TableColumn fx:id="balance" prefWidth="220.0" text="BALANCE" />
         </columns>
       </TableView>
-      <HBox layoutX="567.0" layoutY="47.0" prefHeight="39.0" prefWidth="347.0">
-         <children>
-            <Label prefHeight="27.0" prefWidth="128.0" text="filter by date:" />
-            <DatePicker fx:id="flterDate" prefHeight="39.0" prefWidth="261.0" />
-         </children>
-      </HBox>
-      <Label layoutX="114.0" layoutY="57.0" text="Account:" />
-      <SplitMenuButton fx:id="selectAccount" layoutX="184.0" layoutY="51.0" mnemonicParsing="false" text="select account type">
-        <items>
-          <MenuItem mnemonicParsing="false" text="STANDARD" />
-          <MenuItem mnemonicParsing="false" text="CREDIT" />
-        </items>
-      </SplitMenuButton>
-      <Button fx:id="buttonCancel" layoutX="852.0" layoutY="537.0" mnemonicParsing="false" text="Cancel" />
+      <Label layoutX="72.0" layoutY="35.0" text="ID Account:" />
+      <Button fx:id="buttonCancel" layoutX="787.0" layoutY="520.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="165.0" text="Cancel" />
+      <ComboBox fx:id="ComboBox" layoutX="71.0" layoutY="520.0" prefHeight="40.0" prefWidth="165.0" />
+      <TextField fx:id="idAccount" layoutX="71.0" layoutY="50.0" prefHeight="25.0" prefWidth="399.0" />
+      <Label layoutX="71.0" layoutY="505.0" text="TYPE" />
+      <Label layoutX="248.0" layoutY="505.0" text="AMOUNT" />
+      <TextField fx:id="amountFormulario" layoutX="248.0" layoutY="520.0" prefHeight="40.0" prefWidth="165.0" />
+      <Button fx:id="buttonCreateMovement" layoutX="428.0" layoutY="520.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="165.0" text="Create Movement" />
+      <Button fx:id="buttonUndoLastMovement" layoutX="606.0" layoutY="520.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="165.0" text="Undo Last Movement" />
    </children>
 </Pane>
