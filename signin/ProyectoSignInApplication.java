@@ -1,3 +1,5 @@
+package signin;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,6 +12,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import ui.MovementController;
 import ui.SignInController;
 
 /**
@@ -20,12 +23,12 @@ public class ProyectoSignInApplication extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader =new FXMLLoader(getClass().getResource("ui/SignInFX.fxml"));
+        FXMLLoader loader =new FXMLLoader(getClass().getResource("ui/Movement.fxml"));
         Parent root = (Parent)loader.load();
         
-        SignInController controller = loader.getController();
+        MovementController controller = loader.getController();
         
-        controller.initStage(stage,root);
+        controller.init(stage,root);
     }
 
     /**

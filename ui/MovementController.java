@@ -16,7 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Customer;
+import model.Account;
 
 /**
  *
@@ -24,7 +24,7 @@ import model.Customer;
  */
 public class MovementController {
 @FXML
-    private TextField idAccount;
+    private TextField id;
 @FXML
     private TableColumn date;
 @FXML
@@ -45,10 +45,11 @@ public class MovementController {
     private Button buttonCancel;
     
     private static final Logger LOGGER = Logger.getLogger("ui/MovementController.ui");
-    private Customer customer;
+    private Account account;
     
-    public void setCustomer(Customer customer) {
-            this.customer = customer;
+    public void setAccount(Account account) {
+            this.account = account;
+            id.setText(String.valueOf(account.getId()));
     }
     
     public void init(Stage stage, Parent root) {

@@ -4,7 +4,8 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+ fx:controller="ui.MovementController">
    <children>
       <TableView layoutX="72.0" layoutY="88.0" prefHeight="400.0" prefWidth="880.0">
         <columns>
@@ -16,8 +17,8 @@
       </TableView>
       <Label layoutX="72.0" layoutY="35.0" text="ID Account:" />
       <Button fx:id="buttonCancel" layoutX="787.0" layoutY="520.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="165.0" text="Cancel" />
-      <ComboBox fx:id="ComboBox" layoutX="71.0" layoutY="520.0" prefHeight="40.0" prefWidth="165.0" />
-      <TextField fx:id="idAccount" layoutX="71.0" layoutY="50.0" prefHeight="25.0" prefWidth="399.0" />
+      <ComboBox fx:id="comboBox" layoutX="71.0" layoutY="520.0" prefHeight="40.0" prefWidth="165.0" />
+      <TextField fx:id="id" layoutX="71.0" layoutY="50.0" prefHeight="25.0" prefWidth="399.0" />
       <Label layoutX="71.0" layoutY="505.0" text="TYPE" />
       <Label layoutX="248.0" layoutY="505.0" text="AMOUNT" />
       <TextField fx:id="amountFormulario" layoutX="248.0" layoutY="520.0" prefHeight="40.0" prefWidth="165.0" />
