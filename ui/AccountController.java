@@ -77,13 +77,10 @@ public class AccountController {
     private AccountRESTClient client = new AccountRESTClient();
     public void setCustomer(Customer customer) {
             this.customer = customer;
-            tablatv.setItems(FXCollections.observableArrayList(client.findAccountsByCustomerId_XML(new GenericType<List<Account>>(){},customer.getId().toString())));
     }
-    public void initStage(){
+    public void initStage(Parent root){
     LOGGER.info("Initializing account window");
     try {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountFX.fxml"));
-    Parent root = loader.load();
     Scene scene = new Scene(root);   
     idClmn.setCellValueFactory(new PropertyValueFactory<>("id"));
     AccountTypeClmn.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -92,6 +89,7 @@ public class AccountController {
     CreditLineClmn.setCellValueFactory(new PropertyValueFactory<>("creditLine"));
     BeginBalanceClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalance"));
     DateClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalanceTimestamp"));
+    tablatv.setItems(FXCollections.observableArrayList(client.findAccountsByCustomerId_XML(new GenericType<List<Account>>(){},customer.getId().toString())));
     this.stage = new Stage();  
     stage.setTitle("My Accounts");
     stage.setScene(scene);
@@ -102,7 +100,7 @@ public class AccountController {
     newAccountBt.setOnAction(this::handleBtnwAccountOnAction);
     ContinueBt.setOnAction(this::handleBtContinueOnAction);
     stage.show();
-    } catch (IOException e) {
+    } catch (Exception e) {
     e.printStackTrace();
     }
     }
@@ -126,7 +124,16 @@ public class AccountController {
     }
     }
     private void handleBtContinueOnAction(ActionEvent event){
-    
+    try{
+    Account slAccount = tablatv.getSelectionModel().getSelectedItem();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountFX.fxml"));
+    Parent root = loader.load();
+    MovementController controller = loader.getController();
+    controller.setAccount(slAccount);
+    Stage movementStage = new Stage();
+    controller.init(movementStage,root);
+    }catch(Exception e){
+    }
     }
     private void handleBtnwAccountOnAction(ActionEvent event){
         

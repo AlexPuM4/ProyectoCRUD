@@ -95,7 +95,7 @@ public class SignInController {
             Parent root = loader.load();
             AccountController controller = loader.getController();
             controller.setCustomer(customer);
-            controller.initStage();
+            controller.initStage(root);
 
         } catch (NotAuthorizedException e) {
             lbErrorSignIn.setVisible(true);
