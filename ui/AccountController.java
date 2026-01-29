@@ -105,7 +105,8 @@ public class AccountController {
     deleteBT.setDisable(true);
     stage.show();
     } catch (Exception e) {
-    e.printStackTrace();
+    Alert alert = new Alert(AlertType.ERROR,e.getMessage());
+    alert.showAndWait();
     }
     }
     private void handleBtExitOnAction(ActionEvent event) {
