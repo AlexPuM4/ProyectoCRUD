@@ -56,6 +56,8 @@ public class AccountController {
     @FXML
     private Button newAccountBt;
     @FXML
+    private Button deleteBT;
+    @FXML
     private TableView<Account> tablatv;
     @FXML
     private TableColumn<Account , Long> idClmn;
@@ -98,6 +100,7 @@ public class AccountController {
     ExitBt.setOnAction(this::handleBtExitOnAction);
     tablatv.getSelectionModel().selectedItemProperty().addListener(this::handleTableSelectionChanged);
     newAccountBt.setOnAction(this::handleBtnwAccountOnAction);
+    deleteBT.setOnAction(this::handleBtndlAccountOnAction);
     ContinueBt.setOnAction(this::handleBtContinueOnAction);
     stage.show();
     } catch (Exception e) {
@@ -126,16 +129,27 @@ public class AccountController {
     private void handleBtContinueOnAction(ActionEvent event){
     try{
     Account slAccount = tablatv.getSelectionModel().getSelectedItem();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("AccountFX.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Movement.fxml"));
     Parent root = loader.load();
     MovementController controller = loader.getController();
     controller.setAccount(slAccount);
     Stage movementStage = new Stage();
     controller.init(movementStage,root);
     }catch(Exception e){
+        e.printStackTrace();
     }
     }
     private void handleBtnwAccountOnAction(ActionEvent event){
         
+    }
+    private void handleBtndlAccountOnAction(ActionEvent event){
+    try{
+        Account slAccount = tablatv.getSelectionModel().getSelectedItem();
+        client.removeAccount(slAccount.getId().toString());
+        tablatv.refresh();
+        
+    }catch(Exception e){
+        e.printStackTrace();
+    }
     }
 }
