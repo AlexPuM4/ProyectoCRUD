@@ -102,6 +102,7 @@ public class AccountController {
     newAccountBt.setOnAction(this::handleBtnwAccountOnAction);
     deleteBT.setOnAction(this::handleBtndlAccountOnAction);
     ContinueBt.setOnAction(this::handleBtContinueOnAction);
+    deleteBT.setDisable(true);
     stage.show();
     } catch (Exception e) {
     e.printStackTrace();
@@ -122,8 +123,10 @@ public class AccountController {
     private void handleTableSelectionChanged(ObservableValue observable, Account oldValue, Account newValue){
     if (newValue != null) {
         ContinueBt.setDisable(false);
+        deleteBT.setDisable(false);
     } else {
         ContinueBt.setDisable(true);
+        deleteBT.setDisable(true);
     }
     }
     private void handleBtContinueOnAction(ActionEvent event){
@@ -136,7 +139,8 @@ public class AccountController {
     Stage movementStage = new Stage();
     controller.init(movementStage,root);
     }catch(Exception e){
-        e.printStackTrace();
+        Alert alert = new Alert(AlertType.ERROR,e.getMessage());
+        alert.showAndWait();
     }
     }
     private void handleBtnwAccountOnAction(ActionEvent event){
@@ -147,9 +151,9 @@ public class AccountController {
         Account slAccount = tablatv.getSelectionModel().getSelectedItem();
         client.removeAccount(slAccount.getId().toString());
         tablatv.refresh();
-        
     }catch(Exception e){
-        e.printStackTrace();
+        Alert alert = new Alert(AlertType.ERROR,e.getMessage());
+        alert.showAndWait();
     }
     }
 }
