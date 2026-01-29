@@ -96,6 +96,7 @@ public class AccountController {
     stage.setTitle("My Accounts");
     stage.setScene(scene);
     stage.setResizable(false);
+    tablatv.setEditable(true);
     ContinueBt.setDisable(true);
     ExitBt.setOnAction(this::handleBtExitOnAction);
     tablatv.getSelectionModel().selectedItemProperty().addListener(this::handleTableSelectionChanged);
@@ -144,18 +145,19 @@ public class AccountController {
         alert.showAndWait();
     }
     }
-    private void handleBtnwAccountOnAction(ActionEvent event){
-    try{
-        
-    }catch(ClientErrorException e){
-        
-    }
+    private void handleBtnwAccountOnAction(ActionEvent event) {
+    
     }
     private void handleBtndlAccountOnAction(ActionEvent event){
     try{
         Account slAccount = tablatv.getSelectionModel().getSelectedItem();
+        if(slAccount.getMovements() == null){
         client.removeAccount(slAccount.getId().toString());
-        tablatv.refresh();
+        tablatv.getItems().remove(slAccount);
+        }else{
+        Alert alert = new Alert(AlertType.ERROR,"No se puede borrar la cuenta , contiene movimientos");
+        alert.showAndWait();
+        }
     }catch(ClientErrorException e){
         Alert alert = new Alert(AlertType.ERROR,e.getMessage());
         alert.showAndWait();
