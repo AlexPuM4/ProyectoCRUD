@@ -144,14 +144,18 @@ public class AccountController {
     }
     }
     private void handleBtnwAccountOnAction(ActionEvent event){
+    try{
         
+    }catch(ClientErrorException e){
+        
+    }
     }
     private void handleBtndlAccountOnAction(ActionEvent event){
     try{
         Account slAccount = tablatv.getSelectionModel().getSelectedItem();
         client.removeAccount(slAccount.getId().toString());
         tablatv.refresh();
-    }catch(Exception e){
+    }catch(ClientErrorException e){
         Alert alert = new Alert(AlertType.ERROR,e.getMessage());
         alert.showAndWait();
     }
