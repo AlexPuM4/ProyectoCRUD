@@ -6,8 +6,12 @@
 package ui;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -37,6 +41,7 @@ import model.Customer;
 import model.Account;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javax.ws.rs.core.GenericType;
 import logic.AccountRESTClient;
@@ -123,33 +128,54 @@ public class AccountController {
         }
     }
     private void handleTableSelectionChanged(ObservableValue observable, Account oldValue, Account newValue){
-    if (newValue != null) {
+        if (newValue != null) {
         ContinueBt.setDisable(false);
         deleteBT.setDisable(false);
-    } else {
+        } else {
         ContinueBt.setDisable(true);
         deleteBT.setDisable(true);
-    }
+        }
     }
     private void handleBtContinueOnAction(ActionEvent event){
-    try{
-    Account slAccount = tablatv.getSelectionModel().getSelectedItem();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("Movement.fxml"));
-    Parent root = loader.load();
-    MovementController controller = loader.getController();
-    controller.setAccount(slAccount);
-    Stage movementStage = new Stage();
-    controller.init(movementStage,root);
+        try{
+        Account slAccount = tablatv.getSelectionModel().getSelectedItem();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Movement.fxml"));
+        Parent root = loader.load();
+        MovementController controller = loader.getController();
+        controller.setAccount(slAccount);
+        Stage movementStage = new Stage();
+        controller.init(movementStage,root);
     }catch(Exception e){
         Alert alert = new Alert(AlertType.ERROR,e.getMessage());
         alert.showAndWait();
     }
     }
     private void handleBtnwAccountOnAction(ActionEvent event) {
-    
+        try {
+        Account nwAccount = new Account();
+        long idRandom = ThreadLocalRandom.current().nextLong(1_000_000_000L, 10_000_000_000L);
+        nwAccount.setId(idRandom);
+        nwAccount.setBeginBalanceTimestamp(new Date());
+        nwAccount.setType(AccountType.STANDARD);
+        nwAccount.setCreditLine(0.0);
+        nwAccount.setDescription("");
+        Set<Customer> customerr = new HashSet<>();
+        customerr.add(customer);
+        nwAccount.setCustomers(customerr);
+        tablatv.getItems().add(nwAccount);
+        tablatv.getSelectionModel().select(nwAccount);
+        client.createAccount_XML(nwAccount);
+        LOGGER.info("Successfully created account");
+        } catch(InternalServerErrorException e){
+        Alert alert = new Alert(AlertType.ERROR,e.getMessage());
+        alert.showAndWait();
+        } catch(Exception e){
+        Alert alert = new Alert(AlertType.ERROR,e.getMessage());
+        alert.showAndWait();
+        }
     }
     private void handleBtndlAccountOnAction(ActionEvent event){
-    try{
+        try {
         Account slAccount = tablatv.getSelectionModel().getSelectedItem();
         if(slAccount.getMovements() == null){
         client.removeAccount(slAccount.getId().toString());
@@ -158,9 +184,43 @@ public class AccountController {
         Alert alert = new Alert(AlertType.ERROR,"No se puede borrar la cuenta , contiene movimientos");
         alert.showAndWait();
         }
-    }catch(ClientErrorException e){
+        } catch(ClientErrorException e){
         Alert alert = new Alert(AlertType.ERROR,e.getMessage());
         alert.showAndWait();
+        }
     }
+    private void handleCreditLineChng(CellEditEvent<Account , Double> event){
+        Account editAccount = event.getRowValue();
+        if(editAccount.getType() == AccountType.CREDIT){
+        editAccount.setCreditLine(event.getNewValue());
+        LOGGER.info("Account Updated");
+        }else {
+        event.getTableView().refresh();
+        Alert alert = new Alert(AlertType.ERROR,"Solo se puede editar la linea de credito si su tipo de cuenta es de credito");
+        alert.showAndWait();
+        }
+    }
+    private void handleBgnBlcChng(CellEditEvent<Account , Double> event){
+        Account editAccount = event.getRowValue();
+        if(editAccount.getBalance() == null){
+        Double nwBgnBlc = event.getNewValue();
+        event.getTableView().refresh();
+        return;
+        }else {
+        Alert alert = new Alert(AlertType.ERROR,"No se puede modificar el Saldo inicial despues de haber creado la cuenta");
+        alert.showAndWait();
+        event.getTableView().refresh();
+        return;
+        }
+    }
+    private void handleTypeChng(CellEditEvent<Account , AccountType> event){
+        Account editAccount = event.getRowValue();
+        editAccount.setType(event.getNewValue());
+        LOGGER.info("Account Updated");
+    }
+    private void handleDescrChng(CellEditEvent<Account , String> event){
+        Account editAccount = event.getRowValue();
+        editAccount.setDescription(event.getNewValue());
+        LOGGER.info("Account Updated");
     }
 }
