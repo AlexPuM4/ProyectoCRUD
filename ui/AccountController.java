@@ -42,7 +42,10 @@ import model.Account;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.DoubleStringConverter;
 import javax.ws.rs.core.GenericType;
 import logic.AccountRESTClient;
 import model.AccountType;
@@ -90,11 +93,25 @@ public class AccountController {
     try {
     Scene scene = new Scene(root);   
     idClmn.setCellValueFactory(new PropertyValueFactory<>("id"));
+    //Establecer factoria de celda y factoria de valor de velda de tipo de cuenta
     AccountTypeClmn.setCellValueFactory(new PropertyValueFactory<>("type"));
+    AccountTypeClmn.setCellFactory(ComboBoxTableCell.forTableColumn(AccountType.values()));
+    AccountTypeClmn.setOnEditCommit(this::handleTypeChng);
+    //Establecer factoria de celda y factoria de valor de celda de descripcion
     DescriptionClmn.setCellValueFactory(new PropertyValueFactory<>("description"));
+    DescriptionClmn.setCellFactory(TextFieldTableCell.<Account>forTableColumn());
+    DescriptionClmn.setOnEditCommit(this::handleDescrChng);
+    //
     BalanceClmn.setCellValueFactory(new PropertyValueFactory<>("balance"));
+    //Establecer la factoria de celda y factoria de valor de celda de linea de credita
     CreditLineClmn.setCellValueFactory(new PropertyValueFactory<>("creditLine"));
+    CreditLineClmn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+    CreditLineClmn.setOnEditCommit(this::handleCreditLineChng);
+    //Establecer factoria de celda y factoria de valor de celda de begin Balance
     BeginBalanceClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalance"));
+    BeginBalanceClmn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+    BeginBalanceClmn.setOnEditCommit(this::handleBgnBlcChng);
+    //
     DateClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalanceTimestamp"));
     tablatv.setItems(FXCollections.observableArrayList(client.findAccountsByCustomerId_XML(new GenericType<List<Account>>(){},customer.getId().toString())));
     this.stage = new Stage();  
@@ -164,6 +181,7 @@ public class AccountController {
         nwAccount.setCustomers(customerr);
         tablatv.getItems().add(nwAccount);
         tablatv.getSelectionModel().select(nwAccount);
+        tablatv.refresh();
         client.createAccount_XML(nwAccount);
         LOGGER.info("Successfully created account");
         } catch(InternalServerErrorException e){
@@ -193,6 +211,7 @@ public class AccountController {
         Account editAccount = event.getRowValue();
         if(editAccount.getType() == AccountType.CREDIT){
         editAccount.setCreditLine(event.getNewValue());
+        client.updateAccount_XML(editAccount);
         LOGGER.info("Account Updated");
         }else {
         event.getTableView().refresh();
@@ -202,25 +221,31 @@ public class AccountController {
     }
     private void handleBgnBlcChng(CellEditEvent<Account , Double> event){
         Account editAccount = event.getRowValue();
-        if(editAccount.getBalance() == null){
-        Double nwBgnBlc = event.getNewValue();
-        event.getTableView().refresh();
-        return;
-        }else {
-        Alert alert = new Alert(AlertType.ERROR,"No se puede modificar el Saldo inicial despues de haber creado la cuenta");
-        alert.showAndWait();
-        event.getTableView().refresh();
-        return;
+        Double nwBeginBalance = event.getNewValue();
+        if(editAccount.getBeginBalance() != null){
+            event.getTableView().refresh();
+            Alert alert = new Alert(AlertType.ERROR,"Balance inicial no es editable,una vez que ha sido ya creada la cuenta");
+            alert.showAndWait();
+            LOGGER.info("Account Updated");
+            return;
         }
+        editAccount.setBalance(nwBeginBalance);
+        editAccount.setBeginBalance(nwBeginBalance);
+        client.updateAccount_XML(editAccount);
     }
     private void handleTypeChng(CellEditEvent<Account , AccountType> event){
         Account editAccount = event.getRowValue();
         editAccount.setType(event.getNewValue());
+        tablatv.refresh();
+        client.updateAccount_XML(editAccount);
         LOGGER.info("Account Updated");
     }
     private void handleDescrChng(CellEditEvent<Account , String> event){
         Account editAccount = event.getRowValue();
         editAccount.setDescription(event.getNewValue());
+        client.updateAccount_XML(editAccount);
+        tablatv.refresh();
         LOGGER.info("Account Updated");
     }
+    
 }

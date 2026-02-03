@@ -7,20 +7,25 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AccountController">
    <children>
-      <TableView fx:id="tablatv" layoutX="114.0" layoutY="168.0" prefHeight="433.0" prefWidth="797.0">
+      <TableView fx:id="tablatv" layoutX="53.0" layoutY="100.0" prefHeight="503.0" prefWidth="872.0">
         <columns>
-          <TableColumn id="AccountTypeClmn" fx:id="AccountTypeClmn" prefWidth="101.0" text="AccountType" />
-          <TableColumn id="DescriptionClmn" fx:id="DescriptionClmn" prefWidth="124.0" text="Description" />
-            <TableColumn id="BalanceClmn" fx:id="BalanceClmn" minWidth="0.0" prefWidth="76.0" text="Balance" />
-            <TableColumn id="CreditLineClmn" fx:id="CreditLineClmn" prefWidth="127.0" text="CreditLine" />
-            <TableColumn id="BeginBalanceClmn" fx:id="BeginBalanceClmn" prefWidth="100.0" text="BeginBalance" />
-            <TableColumn id="DateClmn" fx:id="DateClmn" prefWidth="93.0" text="Date" />
-            <TableColumn id="ID" fx:id="idClmn" prefWidth="101.0" text="ID" />
+          <TableColumn fx:id="idClmn" prefWidth="115.0" text="ID" />
+          <TableColumn fx:id="DescriptionClmn" prefWidth="139.0" text="Description" />
+            <TableColumn fx:id="BalanceClmn" minWidth="0.0" prefWidth="83.0" text="Balance" />
+            <TableColumn fx:id="CreditLineClmn" prefWidth="91.0" text="CreditLine" />
+            <TableColumn fx:id="BeginBalanceClmn" prefWidth="140.0" text="BeginBalance" />
+            <TableColumn fx:id="DateClmn" prefWidth="168.0" text="Date" />
+            <TableColumn fx:id="AccountTypeClmn" prefWidth="135.0" text="AccountType" />
         </columns>
       </TableView>
-      <Button fx:id="ExitBt" layoutX="114.0" layoutY="660.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Exit" />
-      <Button fx:id="ContinueBt" layoutX="784.0" layoutY="660.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Continue" />
-      <Button fx:id="newAccountBt" layoutX="925.0" layoutY="168.0" mnemonicParsing="false" text="New" />
-      <Button fx:id="deleteBT" layoutX="925.0" layoutY="205.0" mnemonicParsing="false" text="Delete" textFill="#da0000" />
+      <Button fx:id="ExitBt" layoutX="53.0" layoutY="644.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="172.0" text="Exit" textFill="RED" />
+      <Button fx:id="ContinueBt" layoutX="753.0" layoutY="644.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="172.0" text="Continue" textFill="#1eaafc" />
+      <Button fx:id="newAccountBt" layoutX="932.0" layoutY="100.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="61.0" text="New" textFill="#04b25b" />
+      <Button fx:id="deleteBT" layoutX="932.0" layoutY="162.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="61.0" text="Delete" textFill="#da0000" />
+      <Text layoutX="53.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
    </children>
 </Pane>
