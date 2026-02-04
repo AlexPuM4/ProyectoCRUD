@@ -63,6 +63,7 @@ public class AccountController {
     private Button ExitBt;
     @FXML
     private Button newAccountBt;
+    @FXML private MenuController menuController;
     @FXML
     private Button deleteBT;
     @FXML

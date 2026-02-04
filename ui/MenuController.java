@@ -9,12 +9,9 @@ import java.awt.Desktop;
 import java.net.URI;
 
 public class MenuController {
-
     @FXML private Menu AboutMenu;
     @FXML private Menu HelpMenu;
     @FXML private Menu LogOutMenu;
-
-    @FXML
     public void initialize() {
         AboutMenu.setOnShowing(event -> handleAbout());
         HelpMenu.setOnShowing(event -> handleHelp());
