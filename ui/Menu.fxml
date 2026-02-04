@@ -4,22 +4,28 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MenuController"
+>
    <children>
-      <MenuBar fx:id="MenuBar" prefHeight="19.0" prefWidth="125.0">
+      <MenuBar fx:id="MenuBar" prefHeight="29.0" prefWidth="201.0">
         <menus>
-          <Menu fx:id="ActionMn" mnemonicParsing="false" text="Action">
+          <Menu fx:id="AboutMenu" mnemonicParsing="false" text="About">
             <items>
                   <MenuItem fx:id="LogOutMnIm" mnemonicParsing="false" text="Log Out" />
               <MenuItem fx:id="CloseMnIm" mnemonicParsing="false" text="Close Application" />
             </items>
           </Menu>
-          <Menu fx:id="HelpMn" mnemonicParsing="false" text="Help">
+          <Menu fx:id="HelpMenu" mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
+            <Menu fx:id="LogOutMenu" mnemonicParsing="false" text="Log Out">
+               <items>
+                  <MenuItem fx:id="LogOutMnIm1" mnemonicParsing="false" text="Log Out" />
+                  <MenuItem fx:id="CloseMnIm1" mnemonicParsing="false" text="Close Application" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
    </children>
