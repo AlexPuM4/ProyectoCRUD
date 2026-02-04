@@ -37,24 +37,31 @@ public class MenuController {
     alert.setContentText("Aplicación realizada por Alex.");
     alert.showAndWait();
 }
-
 private void handleHelp() {
     LOGGER.info("Acción Help disparada");
     try {
-       WebView webView = new WebView();
-       webView.getEngine().load(getClass().getResource("/home/alex/ProyectoCRUD/ui/help.html").toExternalForm());
-       Stage AccountHelp = new Stage();
-       AccountHelp.setTitle("Help");
-       AccountHelp.setScene(new Scene(new StackPane(webView),800,600));
-       AccountHelp.show();
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+        java.net.URL url = getClass().getResource("/ui/help.html");
+        if (url != null) {
+            webEngine.load(url.toExternalForm());
+            Stage stageHelp = new Stage();
+            stageHelp.setTitle("Ayuda del Sistema");
+            StackPane root = new StackPane(webView);
+            Scene scene = new Scene(root, 800, 600);
+            stageHelp.setScene(scene);
+            stageHelp.show();
+        } else {
+            LOGGER.severe("ERROR: No se encontró el archivo help.html en la ruta /ui/");
+        }
     } catch (Exception e) {
-        LOGGER.info("Error al abrir la ayuda: " + e.getMessage());
+        LOGGER.severe("Error al abrir la ayuda con WebView: " + e.getMessage());
+        e.printStackTrace();
     }
 }
 
 private void handleLogOut() {
     LOGGER.info("Acción LogOut disparada");
-    // Obtenemos la ventana a través de la barra de menú
     if (menuBar != null && menuBar.getScene() != null) {
         Stage stage = (Stage) menuBar.getScene().getWindow();
         stage.close();
