@@ -8,9 +8,18 @@
    <children>
       <MenuBar fx:id="menuBar" prefHeight="29.0" prefWidth="201.0">
         <menus>
-          <Menu fx:id="AboutMenu" mnemonicParsing="false" text="About" />
-          <Menu fx:id="HelpMenu" mnemonicParsing="false" text="Help" />
-            <Menu fx:id="LogOutMenu" mnemonicParsing="false" text="Log Out" />
+          <Menu fx:id="AboutMenu" mnemonicParsing="false" text="About">
+               <items>
+                  <MenuItem fx:id="MenuItemAbout" mnemonicParsing="false" text="Unspecified Action" />
+               </items></Menu>
+          <Menu fx:id="HelpMenu" mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem fx:id="MenuItemHelp" mnemonicParsing="false" text="Unspecified Action" />
+               </items></Menu>
+            <Menu fx:id="LogOutMenu" mnemonicParsing="false" text="Log Out">
+               <items>
+                  <MenuItem fx:id="MenuItemLogOut" mnemonicParsing="false" text="Unspecified Action" />
+               </items></Menu>
         </menus>
       </MenuBar>
    </children>
