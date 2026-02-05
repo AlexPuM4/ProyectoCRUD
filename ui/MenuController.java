@@ -13,6 +13,8 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import java.awt.Desktop;
 import java.util.logging.Logger;
+import javafx.scene.control.Label;
+
 
 public class MenuController {
     @FXML private MenuBar menuBar;
@@ -30,14 +32,16 @@ public class MenuController {
     }
 
     private void handleAbout() {
-    LOGGER.info("Acción About disparada");
-    Alert alert = new Alert(AlertType.INFORMATION);
-    alert.setTitle("About");
-    alert.setHeaderText(null);
-    alert.setContentText("Aplicación realizada por Alex.");
-    alert.showAndWait();
+    Stage stageAbout = new Stage();
+    stageAbout.setTitle("About");
+    Label label = new Label("Aplicacion creada por Alex");
+    StackPane root = new StackPane();
+    root.getChildren().add(label); 
+    Scene scene = new Scene(root, 400, 100);
+    stageAbout.setScene(scene);
+    stageAbout.show();
 }
-private void handleHelp() {
+    private void handleHelp() {
     LOGGER.info("Acción Help disparada");
     try {
         WebView webView = new WebView();
@@ -60,7 +64,7 @@ private void handleHelp() {
     }
 }
 
-private void handleLogOut() {
+    private void handleLogOut() {
     LOGGER.info("Acción LogOut disparada");
     if (menuBar != null && menuBar.getScene() != null) {
         Stage stage = (Stage) menuBar.getScene().getWindow();
