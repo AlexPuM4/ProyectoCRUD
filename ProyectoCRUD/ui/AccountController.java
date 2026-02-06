@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui;
+package ProyectoCRUD.ui;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
@@ -36,9 +36,9 @@ import javafx.scene.Node;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotAuthorizedException;
-import logic.CustomerRESTClient;
-import model.Customer;
-import model.Account;
+import ProyectoCRUD.logic.CustomerRESTClient;
+import ProyectoCRUD.model.Customer;
+import ProyectoCRUD.model.Account;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
@@ -47,10 +47,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DoubleStringConverter;
 import javax.ws.rs.core.GenericType;
-import logic.AccountRESTClient;
+import ProyectoCRUD.logic.AccountRESTClient;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
-import model.AccountType;
+import ProyectoCRUD.model.AccountType;
+import ProyectoCRUD.ui.MenuController;
 
 
 
@@ -241,6 +242,7 @@ public class AccountController {
         }
         editAccount.setBalance(nwBeginBalance);
         editAccount.setBeginBalance(nwBeginBalance);
+        tablatv.refresh();
         client.updateAccount_XML(editAccount);
     }
     //Metodo manejador que cambia el tipo de cuenta

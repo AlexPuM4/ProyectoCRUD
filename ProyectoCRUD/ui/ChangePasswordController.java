@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui;
+package ProyectoCRUD.ui;
 
 import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
@@ -17,8 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 import javax.ws.rs.InternalServerErrorException;
-import logic.CustomerRESTClient;
-import model.Customer;
+import ProyectoCRUD.logic.CustomerRESTClient;
+import ProyectoCRUD.model.Customer;
 
 /**
  * Controlador para el cambio de contraseña.

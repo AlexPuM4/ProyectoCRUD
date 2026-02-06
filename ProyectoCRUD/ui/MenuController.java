@@ -1,4 +1,4 @@
-package ui;
+package ProyectoCRUD.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;

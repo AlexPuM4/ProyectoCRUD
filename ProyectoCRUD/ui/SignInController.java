@@ -1,4 +1,4 @@
-package ui;
+package ProyectoCRUD.ui;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -24,9 +24,9 @@ import javafx.scene.Node;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotAuthorizedException;
-import logic.CustomerRESTClient;
-import model.Customer;
-import ui.AccountController;
+import ProyectoCRUD.logic.CustomerRESTClient;
+import ProyectoCRUD.model.Customer;
+import ProyectoCRUD.ui.AccountController;
 
 /**
  * Controller class for user management windows

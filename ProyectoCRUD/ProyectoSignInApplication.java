@@ -1,3 +1,5 @@
+package ProyectoCRUD;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,7 +12,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
-import ui.SignInController;
+
+
+import ProyectoCRUD.ui.SignInController;
 
 /**
  *
@@ -21,10 +25,8 @@ public class ProyectoSignInApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader =new FXMLLoader(getClass().getResource("ui/SignInFX.fxml"));
-        Parent root = (Parent)loader.load();
-        
-        SignInController controller = loader.getController();
-        
+        Parent root = (Parent)loader.load();      
+        SignInController controller = loader.getController();     
         controller.initStage(stage,root);
     }
 

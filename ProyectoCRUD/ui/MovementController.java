@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ui;
+package ProyectoCRUD.ui;
 
 import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
@@ -16,7 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Account;
+import ProyectoCRUD.model.Account;
 
 /**
  *
