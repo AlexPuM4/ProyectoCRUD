@@ -48,6 +48,8 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DoubleStringConverter;
 import javax.ws.rs.core.GenericType;
 import logic.AccountRESTClient;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
 import model.AccountType;
 
 
@@ -133,6 +135,7 @@ public class AccountController {
     alert.showAndWait();
     }
     }
+    //Metodo manejador simple para salir de la ventana de Accounts
     private void handleBtExitOnAction(ActionEvent event) {
         try {
             Alert confirm = new Alert(AlertType.CONFIRMATION, "Estas seguro que quieres salir?");
@@ -145,6 +148,7 @@ public class AccountController {
             alert.showAndWait();
         }
     }
+    //Metodo manejador que detecta la seleccion de cuenta para habilitar y deshabilitar los botones Continue(Movement) y Delte
     private void handleTableSelectionChanged(ObservableValue observable, Account oldValue, Account newValue){
         if (newValue != null) {
         ContinueBt.setDisable(false);
@@ -154,6 +158,7 @@ public class AccountController {
         deleteBT.setDisable(true);
         }
     }
+    //Metodo manejador que asigna la cuenta y la carga a la ventana Movement(Actualmente solo carga el FXML ,MovementController no tiene casi codigo)
     private void handleBtContinueOnAction(ActionEvent event){
         try{
         Account slAccount = tablatv.getSelectionModel().getSelectedItem();
@@ -168,6 +173,7 @@ public class AccountController {
         alert.showAndWait();
     }
     }
+    //Metodo manejador que crea una cuenta vacia
     private void handleBtnwAccountOnAction(ActionEvent event) {
         try {
         Account nwAccount = new Account();
@@ -193,6 +199,7 @@ public class AccountController {
         alert.showAndWait();
         }
     }
+    //Metodo manejador que elimina una cuenta(Solo se puede eliminar si la cuenta no tiene movimientos)
     private void handleBtndlAccountOnAction(ActionEvent event){
         try {
         Account slAccount = tablatv.getSelectionModel().getSelectedItem();
@@ -208,6 +215,7 @@ public class AccountController {
         alert.showAndWait();
         }
     }
+    //Metodo manejador que cambia la linea de credito(Solo se puede cambiar si la cuenta es tipo CREDIT)
     private void handleCreditLineChng(CellEditEvent<Account , Double> event){
         Account editAccount = event.getRowValue();
         if(editAccount.getType() == AccountType.CREDIT){
@@ -220,6 +228,7 @@ public class AccountController {
         alert.showAndWait();
         }
     }
+    //Metodo manejador que cambia el Begin Balance (Solo se puede cambiar si el Begin balance es nulo)
     private void handleBgnBlcChng(CellEditEvent<Account , Double> event){
         Account editAccount = event.getRowValue();
         Double nwBeginBalance = event.getNewValue();
@@ -234,6 +243,7 @@ public class AccountController {
         editAccount.setBeginBalance(nwBeginBalance);
         client.updateAccount_XML(editAccount);
     }
+    //Metodo manejador que cambia el tipo de cuenta
     private void handleTypeChng(CellEditEvent<Account , AccountType> event){
         Account editAccount = event.getRowValue();
         editAccount.setType(event.getNewValue());
@@ -241,6 +251,7 @@ public class AccountController {
         client.updateAccount_XML(editAccount);
         LOGGER.info("Account Updated");
     }
+    //Metodo manejador que cambia la descripcion
     private void handleDescrChng(CellEditEvent<Account , String> event){
         Account editAccount = event.getRowValue();
         editAccount.setDescription(event.getNewValue());
