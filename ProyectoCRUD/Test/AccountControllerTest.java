@@ -36,6 +36,7 @@ import ProyectoCRUD.ProyectoSignInApplication;
 /**
  *
  * @author alex
+ * @fixme Test insuficientes: crear un test que compruebe la creación con éxito de una cuenta de Crédito.Verificar que la Account creada está entre los items de la tabla. 
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AccountControllerTest extends ApplicationTest{
@@ -90,9 +91,15 @@ public void test01_Create() {
     assertNotEquals("La fila debería haberse creado", filasAntes, filasDespues);
     verifyThat("#tablatv", hasTableCell("TestCreateAcc"));
     verifyThat("#tablatv", hasTableCell("100.0"));
+    //TODO Añadir un aserto que compruebe que la nueva Account 
+    //TODO con los datos introducidos está entre los items de la tabla.
+
 }
-    @Test
-    //Borra la cuenta mas reciente (la de los anteriores test)
+/**
+ * @fixme Test insuficiente:Completar y verificar que el objeto Account eliminado ya NO está entre los items de la tabla. 
+
+ */
+@Test
 public void test03_Delete() {
     Node celdaDesc = lookup("#tablatv .table-cell").nth(1).query();
     clickOn(celdaDesc);
