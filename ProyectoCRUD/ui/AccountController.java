@@ -58,6 +58,12 @@ import ProyectoCRUD.ui.MenuController;
 /**
  *
  * @author lossi
+ * @todo @fixme Hacer que la siguiente clase implemente las interfaces 
+ * Initializable y MenuActionsHandler para que al pulsar en las acciones CRUD del 
+ * menú Actions se ejecuten los métodos manejadores correspondientes a la vista 
+ * que incluye el menú.
+ * El método initialize debe llamar a setMenuActionsHandler() para establecer que este
+ * controlador es el manejador de acciones del menú.
  */
 public class AccountController {
     @FXML
@@ -66,6 +72,10 @@ public class AccountController {
     private Button ExitBt;
     @FXML
     private Button newAccountBt;
+    /**
+     * TODO: NO TOCAR La siguiente referencia debe llamarse así y tener este tipo.
+     * JavaFX asigna automáticamente el campo menuIncludeController cuando usas fx:id="menu".
+     */
     @FXML private MenuController menuController;
     @FXML
     private Button deleteBT;
