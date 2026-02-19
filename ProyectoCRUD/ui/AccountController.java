@@ -280,7 +280,6 @@ public class AccountController implements MenuActionsHandler{
     }
     @Override
     public void onRefresh() {
-        LOGGER.info("Menu: Refresh triggered");
         try {
             List<Account> accounts = client.findAccountsByCustomerId_XML(
                     new GenericType<List<Account>>(){}, 
@@ -289,8 +288,8 @@ public class AccountController implements MenuActionsHandler{
             tablatv.setItems(FXCollections.observableArrayList(accounts));
             tablatv.refresh();
         } catch (Exception e) {
-            LOGGER.severe("Error refreshing table: " + e.getMessage());
-            new Alert(AlertType.ERROR, "Error refreshing data").showAndWait();
+            LOGGER.severe("Error al refrescar la tabla: " + e.getMessage());
+            new Alert(AlertType.ERROR, "No se ha podido refrescar los datos").showAndWait();
         }
     }
 
