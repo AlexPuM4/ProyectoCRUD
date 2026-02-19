@@ -52,6 +52,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import ProyectoCRUD.model.AccountType;
 import ProyectoCRUD.ui.MenuController;
+import javafx.scene.control.MenuItem;
 
 
 
@@ -65,7 +66,7 @@ import ProyectoCRUD.ui.MenuController;
  * El método initialize debe llamar a setMenuActionsHandler() para establecer que este
  * controlador es el manejador de acciones del menú.
  */
-public class AccountController {
+public class AccountController implements MenuActionsHandler{
     @FXML
     private Button ContinueBt;
     @FXML
@@ -98,6 +99,7 @@ public class AccountController {
     private static final Logger LOGGER = Logger.getLogger("proyectosignin1.ui");
     private Stage stage;
     private Customer customer;
+    private ActionEvent event;
     private AccountRESTClient client = new AccountRESTClient();
     public void setCustomer(Customer customer) {
             this.customer = customer;
@@ -128,6 +130,7 @@ public class AccountController {
     //
     DateClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalanceTimestamp"));
     tablatv.setItems(FXCollections.observableArrayList(client.findAccountsByCustomerId_XML(new GenericType<List<Account>>(){},customer.getId().toString())));
+    menuController.setMenuActionsHandler(this);
     this.stage = new Stage();  
     stage.setTitle("My Accounts");
     stage.setScene(scene);
@@ -270,6 +273,35 @@ public class AccountController {
         client.updateAccount_XML(editAccount);
         tablatv.refresh();
         LOGGER.info("Account Updated");
+    }
+    @Override
+    public void onCreate() {
+        handleBtnwAccountOnAction(null);
+    }
+    @Override
+    public void onRefresh() {
+        LOGGER.info("Menu: Refresh triggered");
+        try {
+            List<Account> accounts = client.findAccountsByCustomerId_XML(
+                    new GenericType<List<Account>>(){}, 
+                    customer.getId().toString()
+            );
+            tablatv.setItems(FXCollections.observableArrayList(accounts));
+            tablatv.refresh();
+        } catch (Exception e) {
+            LOGGER.severe("Error refreshing table: " + e.getMessage());
+            new Alert(AlertType.ERROR, "Error refreshing data").showAndWait();
+        }
+    }
+
+    @Override
+    public void onUpdate() { 
+            new Alert(AlertType.INFORMATION, "Selecciona un campo en la tabla para editar sus campos directamente.").showAndWait();
+    }
+
+    @Override
+    public void onDelete() {
+        handleBtndlAccountOnAction(null);
     }
     
 }
