@@ -14,6 +14,10 @@ import javafx.stage.Stage;
 import java.awt.Desktop;
 import java.util.logging.Logger;
 import javafx.scene.control.Label;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 
 public class MenuController {
@@ -64,6 +68,16 @@ public class MenuController {
             handler.onDelete();
         }
     }
+    @FXML
+    private void handleReport(){
+    try{
+        JasperReport report = JasperCompileManager.compileReport("report/AccountReport.jrxml");
+        
+    }catch(JRException jre){
+       
+    }
+    }
+    
     public void initialize() {
         // Usar setOnShowing es lo que permite que detecte el clic directo
         LOGGER.info("Controlador de menu cargado");
