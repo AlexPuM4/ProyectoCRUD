@@ -10,6 +10,7 @@
 	<field name="beginBalance" class="java.lang.Double"/>
 	<field name="creditLine" class="java.lang.Double"/>
 	<field name="beginBalanceTimestamp" class="java.util.Date"/>
+	<field name="customers" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -25,7 +26,19 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="249" y="0" width="132" height="32" uuid="49fd2ce7-8da8-486c-92bf-d6e3ddbbd7ca"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="0" width="327" height="20" uuid="2a0bf477-41e9-434d-9537-fd4519e8dc4a"/>
+				<textFieldExpression><![CDATA[$F{customers}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="61" splitType="Stretch">

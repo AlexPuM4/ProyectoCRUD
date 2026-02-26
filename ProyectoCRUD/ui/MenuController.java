@@ -68,6 +68,12 @@ public class MenuController {
             handler.onDelete();
         }
     }
+    @FXML
+    private void handleReport(){
+        if(handler !=null){
+        handler.onReport();
+        }
+    }
     
     public void initialize() {
         // Usar setOnShowing es lo que permite que detecte el clic directo

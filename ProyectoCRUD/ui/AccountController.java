@@ -155,7 +155,6 @@ public class AccountController implements MenuActionsHandler{
     newAccountBt.setOnAction(this::handleBtnwAccountOnAction);
     deleteBT.setOnAction(this::handleBtndlAccountOnAction);
     ContinueBt.setOnAction(this::handleBtContinueOnAction);
-    reportBT.setOnAction(this::handleReport);
     deleteBT.setDisable(true);
     stage.show();
     } catch (Exception e) {
@@ -288,7 +287,8 @@ public class AccountController implements MenuActionsHandler{
         tablatv.refresh();
         LOGGER.info("Account Updated");
     }
-    private void handleReport(ActionEvent event){
+    @Override
+    public void onReport(){
     try{
     LOGGER.info("Se ha disparado manejador de reportes");
     InputStream reportStream = getClass().getResourceAsStream("/ProyectoCRUD/report/AccountReport.jrxml");
