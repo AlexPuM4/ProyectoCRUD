@@ -299,7 +299,6 @@ public class AccountController implements MenuActionsHandler{
     JasperViewer jasperViewer = new JasperViewer(jasperPrint); 
     jasperViewer.setVisible(true);
     }catch(JRException ex){
-        System.out.println(ex);
         Alert alert = new Alert(AlertType.ERROR,ex.getMessage());
         alert.showAndWait();
     }
