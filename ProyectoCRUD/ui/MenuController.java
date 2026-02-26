@@ -68,15 +68,6 @@ public class MenuController {
             handler.onDelete();
         }
     }
-    @FXML
-    private void handleReport(){
-    try{
-        JasperReport report = JasperCompileManager.compileReport("report/AccountReport.jrxml");
-        
-    }catch(JRException jre){
-       
-    }
-    }
     
     public void initialize() {
         // Usar setOnShowing es lo que permite que detecte el clic directo
@@ -101,7 +92,7 @@ public class MenuController {
     try {
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
-        java.net.URL url = getClass().getResource("/ui/help.html");
+        java.net.URL url = getClass().getResource("/ProyectoCRUD/ui/help.html");
         if (url != null) {
             webEngine.load(url.toExternalForm());
             Stage stageHelp = new Stage();

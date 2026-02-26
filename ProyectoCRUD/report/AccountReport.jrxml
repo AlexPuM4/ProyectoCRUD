@@ -1,28 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" columnCount="8" pageWidth="1000" pageHeight="595" orientation="Landscape" columnWidth="120" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a8bdbb51-a956-401c-9b7d-dc6d15a4ee41">
-	<property name="ireport.zoom" value="0.8264462809917356"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="1000" pageHeight="595" orientation="Landscape" columnWidth="960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a8bdbb51-a956-401c-9b7d-dc6d15a4ee41">
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="type" class="java.lang.Object"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="balance" class="java.lang.Double"/>
+	<field name="beginBalance" class="java.lang.Double"/>
+	<field name="creditLine" class="java.lang.Double"/>
+	<field name="beginBalanceTimestamp" class="java.util.Date"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="319" y="13" width="341" height="44" uuid="8c16ab1f-38ea-447c-ae6d-7b3c84986fed"/>
+				<textElement>
+					<font size="36" isItalic="true" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Acccounts Report]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="26" width="100" height="20" uuid="b1a395cd-bf21-4c48-b389-9cf74f9fb824"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="26" width="100" height="20" uuid="703736f5-2199-41f8-bf2a-de14761d4ab4"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="416" y="26" width="100" height="20" uuid="dde59ae4-68bc-4589-a66a-448b7ebe73b4"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[balance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="560" y="26" width="100" height="20" uuid="06e84a9b-159a-4e6e-80cd-ed0552c00a14"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[beginBalance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="708" y="26" width="100" height="20" uuid="6e2847b0-cd3a-4756-80f9-178f850d3ef2"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[creditLine]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="833" y="26" width="127" height="20" uuid="833bbf7a-451c-4653-b14d-aebe0fffdc2b"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[beginBalanceTimestamp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="26" width="100" height="20" uuid="277fd171-8ed0-4c09-9b96-c8d983b44d7d"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[AccountType]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="11" width="100" height="20" uuid="0523e693-e8a0-4e96-8a9f-d14decbebb8e"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="11" width="100" height="20" uuid="f51b2bfe-7877-46a5-a137-52f8d1635e68"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="416" y="11" width="100" height="20" uuid="64f8f66b-9cb6-40f8-b82e-ece88a55ef00"/>
+				<textFieldExpression><![CDATA[$F{balance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="560" y="11" width="100" height="20" uuid="ac355ce7-c266-4ff8-9fe2-92cdec1d8df8"/>
+				<textFieldExpression><![CDATA[$F{beginBalance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="708" y="11" width="100" height="20" uuid="37ae0f00-cdc5-4516-8590-2be01cac0957"/>
+				<textFieldExpression><![CDATA[$F{creditLine}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="11" width="100" height="20" uuid="5ae23910-19ba-4455-a8ef-4c3a438abe9c"/>
+				<textFieldExpression><![CDATA[""+$F{type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="833" y="11" width="100" height="20" uuid="b4151987-2a08-46d8-9958-5abe426130d1"/>
+				<textFieldExpression><![CDATA[$F{beginBalanceTimestamp}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="76" splitType="Stretch">
+			<textField>
+				<reportElement x="460" y="56" width="100" height="20" uuid="d4d56eeb-f287-4d80-ad9d-ddd843032232"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

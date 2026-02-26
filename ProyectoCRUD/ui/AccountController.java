@@ -52,7 +52,18 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import ProyectoCRUD.model.AccountType;
 import ProyectoCRUD.ui.MenuController;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.scene.control.MenuItem;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 
@@ -80,6 +91,8 @@ public class AccountController implements MenuActionsHandler{
     @FXML private MenuController menuController;
     @FXML
     private Button deleteBT;
+    @FXML
+    private Button reportBT;
     @FXML
     private TableView<Account> tablatv;
     @FXML
@@ -142,6 +155,7 @@ public class AccountController implements MenuActionsHandler{
     newAccountBt.setOnAction(this::handleBtnwAccountOnAction);
     deleteBT.setOnAction(this::handleBtndlAccountOnAction);
     ContinueBt.setOnAction(this::handleBtContinueOnAction);
+    reportBT.setOnAction(this::handleReport);
     deleteBT.setDisable(true);
     stage.show();
     } catch (Exception e) {
@@ -273,6 +287,22 @@ public class AccountController implements MenuActionsHandler{
         client.updateAccount_XML(editAccount);
         tablatv.refresh();
         LOGGER.info("Account Updated");
+    }
+    private void handleReport(ActionEvent event){
+    try{
+    LOGGER.info("Se ha disparado manejador de reportes");
+    InputStream reportStream = getClass().getResourceAsStream("/ProyectoCRUD/report/AccountReport.jrxml");
+    JasperReport report = JasperCompileManager.compileReport(reportStream);
+    JRBeanCollectionDataSource dataItems = new JRBeanCollectionDataSource((Collection<Account>)this.tablatv.getItems());
+    Map<String,Object> parameters = new HashMap<>();
+    JasperPrint jasperPrint = JasperFillManager.fillReport(report,parameters,dataItems);
+    JasperViewer jasperViewer = new JasperViewer(jasperPrint); 
+    jasperViewer.setVisible(true);
+    }catch(JRException ex){
+        System.out.println(ex);
+        Alert alert = new Alert(AlertType.ERROR,ex.getMessage());
+        alert.showAndWait();
+    }
     }
     @Override
     public void onCreate() {
