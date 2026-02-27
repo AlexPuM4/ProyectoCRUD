@@ -14,6 +14,10 @@ import javafx.stage.Stage;
 import java.awt.Desktop;
 import java.util.logging.Logger;
 import javafx.scene.control.Label;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 
 public class MenuController {
@@ -22,7 +26,55 @@ public class MenuController {
     @FXML private Menu HelpMenu;
     @FXML private Menu LogOutMenu;
     private static final Logger LOGGER = Logger.getLogger("proyectosignin1.ui");
+    /**
+     * @todo El siguiente código permite la implementación de las acciones CRUD
+     * desde el menú reutilizable de forma diferente(polimorfismo) en cada vista 
+     * que lo incluya.
+     */
+    private MenuActionsHandler handler;
+    /**
+     * Este método debe ser utilizado para indicar desde cada controlador de vista que
+     * incluya el menú que controlador se encargará de manejar cada acción.
+     * @param handler La clase que implementa MenuActionsHandler.
+     */
+    public void setMenuActionsHandler(MenuActionsHandler handler) {
+        this.handler = handler;
+    }
 
+    @FXML
+    private void handleCreate() {
+        if (handler != null) {
+            handler.onCreate();
+        }
+    }
+
+    @FXML
+    private void handleUpdate() {
+        if (handler != null) {
+            handler.onUpdate();
+        }
+    }
+
+    @FXML
+    private void handleRefresh() {
+        if (handler != null) {
+            handler.onRefresh();
+        }
+    }
+
+    @FXML
+    private void handleDelete() {
+        if (handler != null) {
+            handler.onDelete();
+        }
+    }
+    @FXML
+    private void handleReport(){
+        if(handler !=null){
+        handler.onReport();
+        }
+    }
+    
     public void initialize() {
         // Usar setOnShowing es lo que permite que detecte el clic directo
         LOGGER.info("Controlador de menu cargado");
@@ -46,7 +98,7 @@ public class MenuController {
     try {
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
-        java.net.URL url = getClass().getResource("/ui/help.html");
+        java.net.URL url = getClass().getResource("/ProyectoCRUD/ui/help.html");
         if (url != null) {
             webEngine.load(url.toExternalForm());
             Stage stageHelp = new Stage();

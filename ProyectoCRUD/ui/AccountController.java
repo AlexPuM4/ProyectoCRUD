@@ -52,23 +52,47 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import ProyectoCRUD.model.AccountType;
 import ProyectoCRUD.ui.MenuController;
+import java.io.InputStream;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import javafx.scene.control.MenuItem;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 
 /**
  *
  * @author lossi
+ * @todo @fixme Hacer que la siguiente clase implemente las interfaces 
+ * Initializable y MenuActionsHandler para que al pulsar en las acciones CRUD del 
+ * menú Actions se ejecuten los métodos manejadores correspondientes a la vista 
+ * que incluye el menú.
+ * El método initialize debe llamar a setMenuActionsHandler() para establecer que este
+ * controlador es el manejador de acciones del menú.
  */
-public class AccountController {
+public class AccountController implements MenuActionsHandler{
     @FXML
     private Button ContinueBt;
     @FXML
     private Button ExitBt;
     @FXML
     private Button newAccountBt;
+    /**
+     * TODO: NO TOCAR La siguiente referencia debe llamarse así y tener este tipo.
+     * JavaFX asigna automáticamente el campo menuIncludeController cuando usas fx:id="menu".
+     */
     @FXML private MenuController menuController;
     @FXML
     private Button deleteBT;
+    @FXML
+    private Button reportBT;
     @FXML
     private TableView<Account> tablatv;
     @FXML
@@ -88,6 +112,7 @@ public class AccountController {
     private static final Logger LOGGER = Logger.getLogger("proyectosignin1.ui");
     private Stage stage;
     private Customer customer;
+    private ActionEvent event;
     private AccountRESTClient client = new AccountRESTClient();
     public void setCustomer(Customer customer) {
             this.customer = customer;
@@ -118,6 +143,7 @@ public class AccountController {
     //
     DateClmn.setCellValueFactory(new PropertyValueFactory<>("beginBalanceTimestamp"));
     tablatv.setItems(FXCollections.observableArrayList(client.findAccountsByCustomerId_XML(new GenericType<List<Account>>(){},customer.getId().toString())));
+    menuController.setMenuActionsHandler(this);
     this.stage = new Stage();  
     stage.setTitle("My Accounts");
     stage.setScene(scene);
@@ -260,6 +286,50 @@ public class AccountController {
         client.updateAccount_XML(editAccount);
         tablatv.refresh();
         LOGGER.info("Account Updated");
+    }
+    @Override
+    public void onReport(){
+    try{
+    LOGGER.info("Se ha disparado manejador de reportes");
+    InputStream reportStream = getClass().getResourceAsStream("/ProyectoCRUD/report/AccountReport.jrxml");
+    JasperReport report = JasperCompileManager.compileReport(reportStream);
+    JRBeanCollectionDataSource dataItems = new JRBeanCollectionDataSource((Collection<Account>)this.tablatv.getItems());
+    Map<String,Object> parameters = new HashMap<>();
+    JasperPrint jasperPrint = JasperFillManager.fillReport(report,parameters,dataItems);
+    JasperViewer jasperViewer = new JasperViewer(jasperPrint); 
+    jasperViewer.setVisible(true);
+    }catch(JRException ex){
+        Alert alert = new Alert(AlertType.ERROR,ex.getMessage());
+        alert.showAndWait();
+    }
+    }
+    @Override
+    public void onCreate() {
+        handleBtnwAccountOnAction(null);
+    }
+    @Override
+    public void onRefresh() {
+        try {
+            List<Account> accounts = client.findAccountsByCustomerId_XML(
+                    new GenericType<List<Account>>(){}, 
+                    customer.getId().toString()
+            );
+            tablatv.setItems(FXCollections.observableArrayList(accounts));
+            tablatv.refresh();
+        } catch (Exception e) {
+            LOGGER.severe("Error al refrescar la tabla: " + e.getMessage());
+            new Alert(AlertType.ERROR, "No se ha podido refrescar los datos").showAndWait();
+        }
+    }
+
+    @Override
+    public void onUpdate() { 
+            new Alert(AlertType.INFORMATION, "Selecciona un campo en la tabla para editar sus campos directamente.").showAndWait();
+    }
+
+    @Override
+    public void onDelete() {
+        handleBtndlAccountOnAction(null);
     }
     
 }
