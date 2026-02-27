@@ -92,8 +92,6 @@ public class AccountController implements MenuActionsHandler{
     @FXML
     private Button deleteBT;
     @FXML
-    private Button reportBT;
-    @FXML
     private TableView<Account> tablatv;
     @FXML
     private TableColumn<Account , Long> idClmn;
